@@ -1,6 +1,8 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 
+require('./config/mongoose')
+
 const app = express()
 const port = 3000
 
@@ -17,5 +19,5 @@ app.get('/shorten', (req, res) => {
 
 
 app.listen(port, () => {
-  console.log(`App is running on the http://localhost:${port}`)  
+  console.log(`App is running on the http://localhost:${port}`)
 })
