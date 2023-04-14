@@ -1,9 +1,14 @@
 <div class="container mt-3">
-  <form action="/" method="GET">
-    <div class="mb-3">
-      <p>Success! Please use this link:</p>
-      <p>wk5018102@gmail.com</p>
-    </div>
-    <button class="btn btn-outline-primary" type="submit">Copy</button>
-  </form>
+  <div class="mb-3">
+    <p>Success! Please use this link:</p>
+    <input type="tex" id="shortURL" value="{{origin}}/{{shortURL}}" disabled>
+  </div>
+  <button class="btn btn-outline-primary" onclick="copy()">Copy</button>
+  {{!-- 複製shortURL --}}
+  <script>
+    function copy() {
+      const copyURL = document.getElementById('shortURL')
+      navigator.clipboard.writeText(copyURL.value)
+    }
+  </script>
 </div>
