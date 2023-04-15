@@ -11,9 +11,12 @@ router.get('/:shortURL', (req, res) => {
 
   ShortURL.findOne({ shortURL })
     .lean()
-    .then(data =>
+    .then(data => {
+      // 如果短網址不存在，回到首頁
+      if ( !data ) return res.render('index')
+    
       res.redirect( data.originalURL )
-    )
+    })
     .catch(error => console.error( error ))
 
 })
