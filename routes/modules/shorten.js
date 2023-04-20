@@ -8,7 +8,7 @@ const shortenURL = require('../../shortenURL')
 
 router.post('/', (req, res) => {
   // 輸入的url空白時 回到home.handlebars
-  if(req.body.url.trim() === "") return res.redirect('/')
+  if (req.body.url.trim() === "") return res.redirect('/')
 
   const originalURL = req.body.url
   const shortURL = shortenURL(5)
@@ -20,7 +20,8 @@ router.post('/', (req, res) => {
     .then(data => {
       res.render('shorten', { origin: req.headers.origin, shortURL: data.shortURL })
     })
-    .catch(error => console.error( error ))
+    .catch(error => console.error(error))
 })
 
 module.exports = router
+

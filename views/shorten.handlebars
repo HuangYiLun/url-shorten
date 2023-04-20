@@ -1,13 +1,33 @@
 <div class="short-container">
   <p>Success! Please use this link:</p>
-  <input type="tex" id="shortURL" value="{{origin}}/{{shortURL}}" disabled>
+  <input type="text" id="shortURL" value="{{origin}}/{{shortURL}}" disabled>
 </div>
-<button class="btn btn-primary" onclick="copy()">Copy</button>
+<button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+  data-bs-title="Click here to copy" onclick="copy()" id="copyBtn">Copy</button>
 
 {{!-- 複製shortURL --}}
 <script>
+
   function copy() {
     const copyURL = document.getElementById('shortURL')
     navigator.clipboard.writeText(copyURL.value)
+      .then(() => {
+        <!-- 複製成功後，顯示Copied Tooltip -->
+        tooltip._config.title = 'Copied'
+        tooltip.show()
+
+        <!-- Copied顯示2秒後消失，title改回Click here to copy -->
+        setTimeout(() => {
+          tooltip._config.title = 'Click here to copy'
+          tooltip.hide()
+        }, 2000)
+      })
+
+      .catch((error) => {
+        <!-- 複製錯誤時，顯示Copy failed -->
+        console.error(error)
+        alert('Copy failed')
+      })
   }
+
 </script>
