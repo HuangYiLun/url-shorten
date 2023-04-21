@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
     .then(data =>
       data ? data : ShortURL.create({ originalURL, shortURL }))
     .then(data => {
-      res.render('shorten', { origin: req.headers.origin, shortURL: data.shortURL })
+      res.render('shorten', { origin: req.get('origin'), shortURL: data.shortURL })
     })
     .catch(error => console.error(error))
 })
